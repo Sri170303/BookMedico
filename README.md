@@ -7,7 +7,6 @@ cd BookMedico
 cd frontend
 npm install
 npm run dev
-# Follow project-specific setup instructions
 ```
 
 
