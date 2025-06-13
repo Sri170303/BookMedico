@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
+/* styles.css or your main CSS entry */
 @theme {
   --color-primary: #5F6FFF;
+  --grid-cols-auto: repeat(auto-fit, minmax(180px, 1fr));
 }
+
 
 .active hr {
   @apply block;
 }
+
+::-webkit-scrollbar {
+  @apply hidden;
+}
+
