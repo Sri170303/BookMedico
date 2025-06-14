@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
-/* styles.css or your main CSS entry */
+
+* {
+  font-family: Roboto;
+}
+
 @theme {
   --color-primary: #5F6FFF;
-  --grid-cols-auto: repeat(auto-fit, minmax(180px, 1fr));
+  --grid-cols-auto: repeat(auto-fit, minmax(0px, 180px));
 }
 
 

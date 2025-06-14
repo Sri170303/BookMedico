@@ -26,7 +26,7 @@ const Footer = () => {
                 </ul>
             </div>
         </div>
-        <hr className='mt-5'/>
+        <hr className='mt-5 text'/>
         <div className='py-5 text-sm text-center'>
             
             <p>Copyright © 2025 ABC - All Right Reserved.</p>
