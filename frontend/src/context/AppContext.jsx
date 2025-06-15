@@ -4,8 +4,10 @@ import App from "../App";
 export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
+    const currency = "\u20B9";
     const value = {
-        doctors
+        doctors,
+        currency
     }
     return (
         <AppContext.Provider value={value}>
