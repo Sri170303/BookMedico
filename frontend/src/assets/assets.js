@@ -29,6 +29,7 @@ import appointment_img from './appointment_img.png'
 import verified_icon from './verified_icon.svg'
 import info_icon from './info_icon.svg'
 import about_img from './about_img.png'
+import contact_us from './contact_us.png'
 
 export const assets = {
     logo,
@@ -40,7 +41,8 @@ export const assets = {
     appointment_img,
     verified_icon,
     info_icon,
-    about_img
+    about_img,
+    contact_us
 }
 
 export const specialityData = [

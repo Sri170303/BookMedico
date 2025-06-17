@@ -17,7 +17,7 @@ const About = () => {
           <p>Let BookMedico be your partner in proactive healthcare management—effortless, reliable, and designed for your well-being.</p>
         </div>
       </div>
-      <div className='text-xl my-4'>
+      <div className='text-xl my-4 text-center'>
         <p>WHY <span className='text-gray-700 font-semibold'>CHOOSE US</span></p>
       </div>
       <div className='flex flex-col md:flex-row mb-20'>
