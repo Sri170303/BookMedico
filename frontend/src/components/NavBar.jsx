@@ -6,6 +6,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false)
   const [token, setToken] = useState(true)
+  const [showProfileMenu, setShowProfileMenu] = useState(false)
   return (
     <div className='flex justify-between items-center text-sm py-4 mb-5 border-b border-gray-300'>
         <img onClick={() => navigate('/')} src={assets.logo} alt="" className='w-45 cursor-pointer'/>
@@ -29,21 +30,41 @@ const NavBar = () => {
         </ul>
         <div className='flex items-center gap-4'>
           {
-            token ?
-            <div className='flex items-center gap-4 cursor-pointer group relative'>
-              <img className='w-8 rounded-full' src={assets.profile_pic} alt="" />
-              <img className='w-2.5' src={assets.dropdown_icon} alt="" />
-              <div className='absolute top-0 right-0 pt-15 text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
-                <div className='min-w-48 flex flex-col bg-stone-200 gap-4 p-4 rounded'>
-                  <p className='hover:text-black cursor-pointer' onClick={() => navigate('/my-profile')}>My Profile</p>
-                  <p className='hover:text-black cursor-pointer' onClick={() => navigate('my-appointments')}>My Appointments</p>
-                  <p className='hover:text-black cursor-pointer' onClick={() => setToken(false)}>Logout</p>
+            token ? (
+              <div className='flex items-center gap-4 cursor-pointer relative'>
+                <div onClick={() => setShowProfileMenu(!showProfileMenu)} className="flex items-center gap-2">
+                  <img className='w-8 rounded-full' src={assets.profile_pic} alt="" />
+                  <img className='w-2.5' src={assets.dropdown_icon} alt="" />
                 </div>
+                {showProfileMenu && (
+                  <div className='absolute top-12 right-0 text-base font-medium text-gray-600 z-20'>
+                    <div className='min-w-48 flex flex-col bg-stone-200 gap-4 p-4 rounded shadow'>
+                      <p className='hover:text-black cursor-pointer' onClick={() => { setShowProfileMenu(false); navigate('/my-profile'); }}>My Profile</p>
+                      <p className='hover:text-black cursor-pointer' onClick={() => { setShowProfileMenu(false); navigate('/my-appointments'); }}>My Appointments</p>
+                      <p className='hover:text-black cursor-pointer' onClick={() => { setShowProfileMenu(false); setToken(false); }}>Logout</p>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-            : <button onClick={() => navigate('/login')} className='border-none text-white bg-primary px-8 py-3 rounded-full font-light hidden md:block'>Create Account</button>
-
+            ) : (
+              <button onClick={() => navigate('/login')} className='border-none text-white bg-primary px-8 py-3 rounded-full font-light hidden md:block'>
+                Create Account
+              </button>
+            )
           }
+          <img onClick={() => setShowMenu(true)} className='w-6 md:hidden' src={assets.menu_icon} alt="" />
+          <div className={`${showMenu ? 'fixed w-full': 'h-0 w-0'} md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
+            <div className='flex items-center justify-between px-5 py-6 gap-4'>
+              <img className='w-36' src={assets.logo} alt="logo" />
+              <img className='w-7' onClick={() => setShowMenu(false)} src={assets.cross_icon} alt="close icon" />
+            </div>
+            <ul className='flex flex-col items-center mt-5 px-5 text-lg font-medium gap-4'>
+              <NavLink onClick={() => setShowMenu(false)} to="/"><p className="px-4 py-2 rounded inline-block">Home</p></NavLink>
+              <NavLink onClick={() => setShowMenu(false)} to="/doctors"><p className="px-4 py-2 rounded inline-block">ALL DOCTORS</p></NavLink>
+              <NavLink onClick={() => setShowMenu(false)} to="/about"><p className="px-4 py-2 rounded inline-block">ABOUT</p></NavLink>
+              <NavLink onClick={() => setShowMenu(false)} to="/contact"><p className="px-4 py-2 rounded inline-block">CONTACT</p></NavLink>
+            </ul>
+          </div>            
         </div>
     </div>
   )
