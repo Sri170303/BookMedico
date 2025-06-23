@@ -10,11 +10,13 @@ import Appointment from './pages/Appointment'
 import NavBar from './components/NavBar'
 import Login from './pages/Login'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
   return (
     <div className='mx-4 sm:mx-[10%]'>
       <NavBar />
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/home' element={<Home />}/>
