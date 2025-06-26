@@ -4,5 +4,4 @@ import tailwidcss from 'tailwindcss/vite';
 
 export default defineConfig({
   plugins: [react(), tailwidcss()],
-  base: '/BookMedico/', // <-- set this to your repo name if using a subfolder
 });
