@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import tailwidcss from 'tailwindcss/vite';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  plugins: [react(), tailwidcss()],
-  base: '/BookMedico/', // <-- set this to your repo name if using a subfolder
+  plugins: [react(), tailwindcss()],
+  base: process.env.VITE_BASE_PATH || '/BookMedico',
 });
