@@ -44,13 +44,12 @@ const registerUser = async (req, res) => {
 }
 
 // API for user login
-
 const loginUser = async (req, res) => {
     try {
         const {email, password} = req.body;
         const user = await userModel.findOne({email});
         if (!user) {
-            res.json({success:false, message: "User does not exist"});
+            return res.json({success:false, message: "User does not exist"});
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {

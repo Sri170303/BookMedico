@@ -1,12 +1,22 @@
 import React , {useState} from 'react'
 import {assets} from "../assets/assets"
 import { NavLink, useNavigate } from 'react-router-dom'
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const [showMenu, setShowMenu] = useState(false)
-  const [token, setToken] = useState(true)
-  const [showProfileMenu, setShowProfileMenu] = useState(false)
+  const [showMenu, setShowMenu] = useState(false);
+  // const [token, setToken] = useState(true)
+  const {token, setToken} = useContext(AppContext);
+
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+
+  const logout = () => {
+    setToken(false);
+    localStorage.removeItem('userToken');
+  }
+
   return (
     <div className='flex justify-between items-center text-sm py-4 mb-5 border-b border-gray-300'>
         <img onClick={() => navigate('/')} src={assets.logo} alt="" className='w-45 cursor-pointer'/>
@@ -41,7 +51,7 @@ const NavBar = () => {
                     <div className='min-w-48 flex flex-col bg-stone-200 gap-4 p-4 rounded shadow'>
                       <p className='hover:text-black cursor-pointer' onClick={() => { setShowProfileMenu(false); navigate('/my-profile'); }}>My Profile</p>
                       <p className='hover:text-black cursor-pointer' onClick={() => { setShowProfileMenu(false); navigate('/my-appointments'); }}>My Appointments</p>
-                      <p className='hover:text-black cursor-pointer' onClick={() => { setShowProfileMenu(false); setToken(false); }}>Logout</p>
+                      <p className='hover:text-black cursor-pointer' onClick={() => { setShowProfileMenu(false); logout(); }}>Logout</p>
                     </div>
                   </div>
                 )}
