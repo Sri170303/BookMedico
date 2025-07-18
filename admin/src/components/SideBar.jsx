@@ -11,7 +11,7 @@ const SideBar = () => {
             aToken && 
             <ul className='text-[#454545]'>
                 <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#d9d9d9] border-r-4 border-primary': ''}`} to={'/admin-dashboard'}>
-                    <img src={assets.home_icon} alt="" />
+                    <img src={assets.home_icon} alt="" />   
                     <p>Dashboard</p>
                 </NavLink>
                 <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#d9d9d9] border-r-4 border-primary': ''}`} to={'/all-appointments'}>

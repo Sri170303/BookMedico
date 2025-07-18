@@ -3,7 +3,8 @@ import jwt from "jsonwebtoken"
 // admin authentication middleware
 const authAdmin = async (req, res, next) => {
     try {
-        const {atoken} = req.headers
+        const {atoken} = req.headers;
+        // console.log(atoken);
         if (!atoken) {
             return res.json({success:false, message:"Authentication token is missing"})
         }
