@@ -27,6 +27,10 @@ const Appointment = () => {
   }
 
   const getAvailableSlots = async () => {
+    if (!docInfo || !docInfo.slots_booked) {
+    console.warn("Doctor info not loaded yet");
+    return; 
+  }
     setDocSlots([]);
     let today = new Date();
     for (let i = 0; i < 7; i++) {
