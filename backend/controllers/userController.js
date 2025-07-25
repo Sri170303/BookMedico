@@ -218,7 +218,6 @@ const cancelAppointment = async (req, res) => {
     });
 
     // release slot book for users after cancellation
-
     const { docId, slotDate, slotTime } = appointmentData;
     const doctorData = await doctorModel.findById(docId);
     let slots_booked = doctorData.slots_booked;
