@@ -42,23 +42,62 @@ const MyProfile = () => {
 
   return userData && (
     <div className="max-w-lg flex flex-col">
-      {
-        edit ?
-        <label className="w-36" htmlFor="image">
-          <div className="inline-block relative cursor-pointer">
-            <img className="w-36 rounded opacity-75" src={image ? URL.createObjectURL(image): userData.image} alt="" />
-            <img className="w-10 absolute bottom-12 right-12" src={image ? "" : assets.upload_icon} alt="" />
+      {edit ? (
+        // EDIT MODE
+        (userData.image || image) ? (
+          // If there's already an image (either from server or newly chosen)
+          <label className="w-36 h-36 relative cursor-pointer" htmlFor="image">
+            <img
+              className="w-36 h-36 object-cover rounded opacity-75"
+              src={image ? URL.createObjectURL(image) : userData.image}
+              alt="Profile"
+            />
+            <img
+              className="w-10 absolute bottom-2 right-2"
+              src={assets.upload_icon}
+              alt="Upload"
+            />
+            <input
+              onChange={(e) => setImage(e.target.files[0])}
+              type="file"
+              id="image"
+              hidden
+            />
+          </label>
+        ) : (
+          // NO IMAGE YET → show placeholder with upload icon
+          <label
+            htmlFor="image"
+            className="w-36 h-36 flex items-center justify-center border-2 border-dashed rounded cursor-pointer hover:bg-gray-300"
+          >
+            <img
+              src={assets.upload_icon}
+              className="w-10 h-10 opacity-60"
+              alt="Add"
+            />
+            <input
+              onChange={(e) => setImage(e.target.files[0])}
+              type="file"
+              id="image"
+              hidden
+            />
+          </label>
+        )
+        ) : (
+        // VIEW MODE (not editing)
+        userData.image ? (
+          <img
+            className="w-36 h-36 object-cover rounded"
+            src={userData.image}
+            alt="Profile"
+          />
+        ) : (
+          <div className="w-36 h-36 flex items-center justify-center border rounded bg-gray-50 text-gray-400 text-sm">
+            No Image
           </div>
-          <input onChange={(e) => setImage(e.target.files[0])} type="file" id="image" hidden/>
-        </label>
-        :
-        <img
-          className="w-36 rounded"
-          src={image ? URL.createObjectURL(image) : userData.image}
-          alt=""
-        />
+        )
+      )}
 
-      }
       {edit ? (
         <input
           className="bg-gray-100 text-3xl font-medium max-w-60 mt-4"
