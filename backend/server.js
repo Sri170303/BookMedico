@@ -16,10 +16,23 @@ connectCloudinary()
 
 // middleware
 app.use(express.json())
+const allowedOrigins = [
+  'https://book-medico-admin.vercel.app',
+  'https://book-medico-frontend.vercel.app'
+];
+
 app.use(cors({
-  origin: 'https://book-medico-admin.vercel.app',
-  credentials: true, 
+  origin: function (origin, callback) {
+    // For non-browser requests or if origin is undefined, allow it (e.g. server-to-server)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
 }));
+
 
 // api endpoints
 app.use('/api/admin', adminRouter)
